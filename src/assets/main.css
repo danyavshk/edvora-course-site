@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.teko-unique {
+  font-family: 'Teko', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.wavefont-default {
+  font-family: 'Wavefont', system-ui;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    'ROND' 100,
+    'YELA' -100;
+}
+
+.permanent-marker-regular {
+  font-family: 'Permanent Marker', cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+body {
+  background-color: RGB(15, 15, 30);
+  background-image:
+    radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(rgba(255, 0, 255, 0.05) 1px, transparent 1px);
+  background-size:
+    50px 50px,
+    20px 20px,
+    20px 20px;
+  background-blend-mode: screen;
+}
