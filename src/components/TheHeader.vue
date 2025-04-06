@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue'
-import MainDrawer from './MainDrawer.vue'
-import MainRegistration from './MainRegistration.vue'
+import AuthModal from './AuthModal.vue'
+import RegisterFrom from './RegisterFrom.vue'
 
 const isDrawerOpen = ref(false)
 const isRegistrationOpen = ref(false)
@@ -67,6 +67,6 @@ const closeRegistration = () => {
     </div>
   </div>
 
-  <MainDrawer v-if="isDrawerOpen" @close="closeDrawer" />
-  <MainRegistration v-if="isRegistrationOpen" @close="closeRegistration" />
+  <AuthModal v-if="isDrawerOpen" @close="closeDrawer" />
+  <RegisterFrom v-if="isRegistrationOpen" @close="closeRegistration" />
 </template>

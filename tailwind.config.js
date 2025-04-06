@@ -11,6 +11,7 @@ export default {
         teko: ['Teko', 'sans-serif'],
         wavefont: ['Wavefont', 'system-ui'],
         permanentMarker: ['Permanent Marker', 'cursive'],
+        nunito: ['Nunito', 'sans-serif'],
       },
     },
   },

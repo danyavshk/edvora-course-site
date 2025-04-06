@@ -1,15 +1,11 @@
 <script setup>
-import CardList from './components/CardList.vue'
-import MainFooter from './components/MainFooter.vue'
-import MainHeader from './components/MainHeader.vue'
-import MainRegistration from './components/MainRegistration.vue'
-// import ProfileUser from './components/ProfileUser.vue'
-MainRegistration
+import ModulesGrid from './components/ModulesGrid.vue'
+import TheHeader from './components/TheHeader.vue'
+import TheFooter from './components/TheFooter.vue'
 </script>
 
 <template>
-  <MainHeader />
-  <CardList />
-  <MainFooter />
-  <!-- <ProfileUser /> -->
+  <TheHeader />
+  <ModulesGrid />
+  <TheFooter />
 </template>

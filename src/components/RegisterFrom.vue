@@ -1,50 +1,104 @@
+<script setup>
+import { reactive } from 'vue'
+
+const formData = reactive({
+  email: '',
+  password: '',
+  confirmPassword: '',
+})
+
+const errors = reactive({
+  email: '',
+  password: '',
+  confirmPassword: '',
+})
+
+function validateForm() {
+  // Reset errors
+  errors.email = ''
+  errors.password = ''
+  errors.confirmPassword = ''
+
+  // Email validation
+  if (!formData.email) {
+    errors.email = 'Email обязателен'
+  } else if (!/^\S+@\S+\.\S+$/.test(formData.email)) {
+    errors.email = 'Неверный формат email'
+  }
+
+  // Password validation
+  if (!formData.password) {
+    errors.password = 'Пароль обязателен'
+  } else if (formData.password.length < 6) {
+    errors.password = 'Пароль должен быть не менее 6 символов'
+  }
+
+  // Confirm password validation
+  if (formData.password !== formData.confirmPassword) {
+    errors.confirmPassword = 'Пароли не совпадают'
+  }
+
+  return !errors.email && !errors.password && !errors.confirmPassword
+}
+
+function submitForm() {
+  if (validateForm()) {
+    console.log('Форма отправлена', formData)
+    // Add your form submission logic here
+  }
+}
+
+defineEmits(['close'])
+</script>
+
 <template>
   <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
     <div
       class="relative z-20 h-[28em] w-[22em] border-2 border-slate-500/70 rounded-[1.5em] bg-slate-500/80 text-white font-nunito p-[2em] flex flex-col gap-[1.5em] shadow-lg"
     >
-      <div
-        class="absolute inset-0 bg-gradient-to-br from-slate-500/70 via-slate-500/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-[1.5em]"
-      ></div>
-      <div
-        class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(71,85,105,0.2),transparent_60%)] group-hover:animate-pulse"
-      ></div>
-
       <h1
         class="text-[2em] font-bold bg-gradient-to-r from-white via-gray-300 to-gray-400 bg-clip-text text-transparent text-center"
       >
         Регистрация
       </h1>
 
-      <form @submit.prevent class="relative z-10 flex flex-col gap-[1em]">
+      <form @submit.prevent="submitForm" class="relative z-10 flex flex-col gap-[1em]">
         <div class="flex flex-col gap-[0.5em]">
           <label for="email" class="text-gray-300 text-sm">Email</label>
           <input
             id="email"
+            v-model="formData.email"
             type="email"
             class="h-[2.5em] px-[1em] rounded-full bg-slate-600/70 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-slate-400 transition-all"
             placeholder="Введите ваш email"
           />
+          <p v-if="errors.email" class="text-red-400 text-xs">{{ errors.email }}</p>
         </div>
 
         <div class="flex flex-col gap-[0.5em]">
           <label for="password" class="text-gray-300 text-sm">Пароль</label>
           <input
             id="password"
+            v-model="formData.password"
             type="password"
             class="h-[2.5em] px-[1em] rounded-full bg-slate-600/70 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-slate-400 transition-all"
             placeholder="••••••••"
           />
+          <p v-if="errors.password" class="text-red-400 text-xs">{{ errors.password }}</p>
         </div>
 
         <div class="flex flex-col gap-[0.5em]">
           <label for="confirm-password" class="text-gray-300 text-sm">Подтвердите пароль</label>
           <input
             id="confirm-password"
+            v-model="formData.confirmPassword"
             type="password"
             class="h-[2.5em] px-[1em] rounded-full bg-slate-600/70 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-slate-400 transition-all"
             placeholder="••••••••"
           />
+          <p v-if="errors.confirmPassword" class="text-red-400 text-xs">
+            {{ errors.confirmPassword }}
+          </p>
         </div>
 
         <div class="flex justify-center mt-4">
@@ -56,10 +110,6 @@
           </button>
         </div>
       </form>
-
-      <div
-        class="absolute bottom-4 left-4 w-8 h-8 rounded-full bg-gradient-to-br from-white/20 to-transparent blur-sm group-hover:animate-pulse"
-      ></div>
     </div>
   </div>
 </template>

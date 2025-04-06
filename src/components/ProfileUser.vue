@@ -1,5 +1,5 @@
 <script setup>
-import MainFooter from './MainFooter.vue'
+import TheFooter from './TheFooter.vue'
 import { reactive } from 'vue'
 
 const user = reactive({
@@ -80,5 +80,5 @@ function formatDate(date) {
       </svg>
     </button>
   </div>
-  <MainFooter />
+  <TheFooter />
 </template>
